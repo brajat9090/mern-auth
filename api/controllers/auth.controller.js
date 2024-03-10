@@ -34,8 +34,6 @@ export const signin = async (req, res, next) => {
       .status(200)
       .json(rest);
 
-    await newUser.save();
-    res.status(201).json({ message: "User created" });
   } catch (error) {
     next(error);
   }
@@ -77,10 +75,10 @@ export const google = async (req, res, next) => {
         .status(200)
         .json(rest);
     }
-
-    await newUser.save();
-    res.status(201).json({ message: "User created" });
   } catch (error) {
     next(error);
   }
+};
+export const signout = (req, res) => {
+  res.clearCookie("access_token").status(200).json("Signout success.");
 };
